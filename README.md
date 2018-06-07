@@ -22,7 +22,7 @@ Technical details:
 - stick to DRY principles
 - base your implementation on design patterns
 - layout should be responsive
-- use [https://deckofcardsapi.com/](https://deckofcardsapi.com/) and Piles iz API
+- use [https://deckofcardsapi.com/](https://deckofcardsapi.com/) and Piles from API
 - implementation should be based one React and Redux-thunk
 
 Advanced requirements:
