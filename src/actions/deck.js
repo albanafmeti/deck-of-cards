@@ -7,7 +7,6 @@ export const shuffleCards = () => {
 
         return DeckApi.shuffleCards().then(response => {
 
-            console.log(response);
             dispatch(storeDeckId(response.deck_id));
 
         });

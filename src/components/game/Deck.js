@@ -1,11 +1,24 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
+import {connect} from "react-redux";
+
 import Player from "./Player";
 import DeckCard from "./DeckCard";
 
-class Deck extends Component {
+import {getPlayers} from '../../selectors/playerSelector';
+
+class Deck extends PureComponent {
 
 
     render() {
+
+        const {players} = this.props;
+
+
+        const playerComponents = players.map((player, index) => {
+            return <Player key={player.id}
+                           player={player}/>;
+        });
+
         return (
             <div className="board">
 
@@ -13,15 +26,7 @@ class Deck extends Component {
                 <div className="desk rounded-circle">
 
 
-                    <Player id={1} name="Alban"/>
-
-                    <Player id={2} name="John"/>
-
-                    <Player id={3} name="Loan"/>
-
-                    <Player id={4} name="Eduard"/>
-
-                    <Player id={5} name="Angela"/>
+                    {playerComponents}
 
 
                     <div className="inner-desk">
@@ -42,4 +47,11 @@ class Deck extends Component {
     }
 }
 
-export default Deck;
+const mapStateToProps = (state) => {
+
+    return {
+        players: getPlayers(state.deckReducer)
+    }
+};
+
+export default connect(mapStateToProps)(Deck);

@@ -126,10 +126,15 @@ html, body, #root, .main-content {
     min-width: 100px;
 }
 
-.single-card {
+.single-card, .deck-card {
     margin: 0 5px
 }
 
-.single-card img {
+.single-card img, .deck-card img {
     width: 100%;
+}
+
+.deck-card {
+    width: 70px;
+    min-width: 70px;
 }

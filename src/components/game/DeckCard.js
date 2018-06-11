@@ -4,7 +4,7 @@ class DeckCard extends Component {
 
 
     render() {
-        return (<div className="single-card"><img src="/images/card.png" alt="Card"/></div>);
+        return (<div className="deck-card"><img src="/images/card.png" alt="Card"/></div>);
     }
 }
 
