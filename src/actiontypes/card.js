@@ -1,0 +1,1 @@
+export const ADD_CARD = 'card/ADD_CARD';

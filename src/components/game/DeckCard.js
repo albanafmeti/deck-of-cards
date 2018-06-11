@@ -1,0 +1,11 @@
+import React, {Component} from 'react';
+
+class DeckCard extends Component {
+
+
+    render() {
+        return (<div className="single-card"><img src="/images/card.png" alt="Card"/></div>);
+    }
+}
+
+export default DeckCard;

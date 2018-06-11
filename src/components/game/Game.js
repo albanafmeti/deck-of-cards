@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import MyCards from "./components/MyCards";
-import Actions from "./components/Actions";
-import Desk from "./components/Desk";
+import MyCards from "./MyCards";
+import Actions from "./Actions";
+import Deck from "./Deck";
 
 class Game extends Component {
     render() {
         return (
             <div className="game">
 
-                <Desk/>
+                <Deck/>
 
                 <div className="container-fluid mt-5">
                     <div className="row">

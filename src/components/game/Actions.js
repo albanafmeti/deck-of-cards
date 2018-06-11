@@ -11,7 +11,7 @@ class Actions extends Component {
 
                         <div className="text-center">
 
-                            <a href="#" className="btn btn-info btn-sm pull-right">RESET</a>
+                            <a href="/" className="btn btn-info btn-sm pull-right">RESET</a>
                         </div>
                     </div>
                 </div>

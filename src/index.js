@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
+import {Provider} from 'react-redux';
 
-// import {Provider} from 'react-redux';
-// import {createStore} from 'redux';
+import configureStore from './store';
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -10,10 +10,21 @@ import './index.css';
 
 import toastr from 'toastr';
 
-import Game from './Game';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+
+import {shuffleCards} from './actions/deck';
 
 toastr.options.progressBar = true;
 
-ReactDOM.render(<Game/>, document.getElementById('root'));
+const store = configureStore();
+
+store.dispatch(shuffleCards());
+
+render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('root'));
+
 registerServiceWorker();

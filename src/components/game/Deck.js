@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Player from "./Player";
-import DeskCards from "./DeskCards";
+import DeckCard from "./DeckCard";
 
-class Desk extends Component {
+class Deck extends Component {
 
 
     render() {
@@ -24,15 +24,22 @@ class Desk extends Component {
                     <Player id={5} name="Angela"/>
 
 
-                    <DeskCards/>
+                    <div className="inner-desk">
+
+                        <DeckCard/>
+                        <DeckCard/>
+                        <DeckCard/>
+                        <DeckCard/>
+                        <DeckCard/>
+
+                    </div>
 
                 </div>
 
 
             </div>
-        )
-            ;
+        );
     }
 }
 
-export default Desk;
+export default Deck;
