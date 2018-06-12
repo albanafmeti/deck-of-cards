@@ -5,18 +5,22 @@ import Player from "./Player";
 import DeckCard from "./DeckCard";
 
 import {getPlayers} from '../../selectors/playerSelector';
+import {getDeckCards} from '../../selectors/deckSelector';
 
 class Deck extends PureComponent {
 
-
     render() {
 
-        const {players} = this.props;
+        const {players, deck_cards} = this.props;
 
 
         const playerComponents = players.map((player, index) => {
             return <Player key={player.id}
                            player={player}/>;
+        });
+
+        const cardComponents = deck_cards.map((deck, index) => {
+            return <DeckCard/>;
         });
 
         return (
@@ -31,16 +35,11 @@ class Deck extends PureComponent {
 
                     <div className="inner-desk">
 
-                        <DeckCard/>
-                        <DeckCard/>
-                        <DeckCard/>
-                        <DeckCard/>
-                        <DeckCard/>
+                        {cardComponents}
 
                     </div>
 
                 </div>
-
 
             </div>
         );
@@ -50,7 +49,8 @@ class Deck extends PureComponent {
 const mapStateToProps = (state) => {
 
     return {
-        players: getPlayers(state.deckReducer)
+        players: getPlayers(state),
+        deck_cards: getDeckCards(state),
     }
 };
 

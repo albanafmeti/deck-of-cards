@@ -13,6 +13,7 @@
     "react-scripts": "1.1.4",
     "reactstrap": "^6.1.0",
     "redux": "^4.0.0",
+    "redux-subscriber": "^1.1.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
     "toastr": "^2.1.4"

@@ -1,5 +1,6 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
+import initSubscriber from 'redux-subscriber';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
 import reducers from './reducers';
@@ -10,6 +11,8 @@ export default function configureStore() {
         composeWithDevTools(
             applyMiddleware(thunk),
         ));
+
+    initSubscriber(store);
 
     // enable hot reload of reducer-files
     if (module.hot) {

@@ -1,6 +1,4 @@
-export default {
-    deck_id: null,
-
+const initialState = {
     players: [
         {
             id: 1,
@@ -34,6 +32,8 @@ export default {
             turn: false
         },
     ],
+};
 
-    deck_cards: [],
-}
+const DefaultReducer = (state = initialState, action) => state;
+
+export default DefaultReducer;

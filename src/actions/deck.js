@@ -8,6 +8,20 @@ export const shuffleCards = () => {
         return DeckApi.shuffleCards().then(response => {
 
             dispatch(storeDeckId(response.deck_id));
+            dispatch(drawCards(response.deck_id));
+
+        });
+
+    };
+};
+
+export const drawCards = (deck_id) => {
+
+    return function (dispatch, getState) {
+
+        return DeckApi.drawCards(deck_id).then(response => {
+
+            console.log(response);
 
         });
 

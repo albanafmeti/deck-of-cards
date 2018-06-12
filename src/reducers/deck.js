@@ -1,5 +1,9 @@
 import * as DeckActionTypes from '../actiontypes/deck';
-import initialState from './initialState';
+
+const initialState = {
+    deck_id: null,
+    cards: []
+};
 
 export default function Deck(state = initialState, action) {
 

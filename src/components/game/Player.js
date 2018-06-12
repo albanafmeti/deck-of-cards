@@ -1,11 +1,20 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {subscribe} from 'redux-subscriber';
+import {connect} from 'react-redux';
 
 class Player extends Component {
 
     static propTypes = {
         player: PropTypes.object.isRequired,
     };
+
+    componentDidMount() {
+        const unsubscribe = subscribe('deck.deck_id', state => {
+
+
+        });
+    }
 
     render() {
         const {player} = this.props;
@@ -32,4 +41,12 @@ class Player extends Component {
     }
 }
 
-export default Player;
+const mapStateToProps = () => {
+    return {};
+};
+
+const mapDispatchToProps = () => {
+    return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
