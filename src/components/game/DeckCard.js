@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
+import PropTypes from "prop-types";
 
 class DeckCard extends Component {
 
+    static propTypes = {
+        cardInfo: PropTypes.object.isRequired,
+    };
 
     render() {
-        return (<div className="deck-card"><img src="/images/card.png" alt="Card"/></div>);
+        const {cardInfo} = this.props;
+
+        return (<div className="deck-card"><img src={cardInfo.card.image} alt="Card"/></div>);
     }
 }
 

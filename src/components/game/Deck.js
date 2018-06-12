@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 import Player from "./Player";
@@ -7,7 +7,7 @@ import DeckCard from "./DeckCard";
 import {getPlayers} from '../../selectors/playerSelector';
 import {getDeckCards} from '../../selectors/deckSelector';
 
-class Deck extends PureComponent {
+class Deck extends Component {
 
     render() {
 
@@ -19,8 +19,8 @@ class Deck extends PureComponent {
                            player={player}/>;
         });
 
-        const cardComponents = deck_cards.map((deck, index) => {
-            return <DeckCard/>;
+        const cardComponents = deck_cards.map((cardInfo, index) => {
+            return <DeckCard cardInfo={cardInfo} key={index}/>;
         });
 
         return (

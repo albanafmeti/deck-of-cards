@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 import deckReducer from './deck';
-import defaultReducer from './default';
+import playerReducer from './player';
 
 const rootReducer = combineReducers({
-    default: defaultReducer,
+    player: playerReducer,
     deck: deckReducer,
 });
 
