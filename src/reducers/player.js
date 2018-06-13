@@ -1,6 +1,8 @@
 import * as PlayerActionTypes from "../actiontypes/player";
-import {getPlayer} from '../selectors/playerSelector';
+import {getPlayer, getPlayersByPileCardsTotal} from '../selectors/playerSelector';
 import * as DeckActionTypes from "../actiontypes/deck";
+
+import {calculateMaxPileValue} from '../helpers';
 
 const initialState = {
     players: [
@@ -38,7 +40,8 @@ const initialState = {
     ],
 
     turnPlayerId: 1,
-    totalCards: 50
+    totalCards: 50,
+    winners: []
 };
 
 export default function Player(state = initialState, action) {
@@ -115,11 +118,50 @@ export default function Player(state = initialState, action) {
             };
 
 
+        case PlayerActionTypes.MOVE_CARDS_TO_PILE_SUCCESS:
+
+            players = state.players.map((player, index) => {
+
+                if (player.id === action.player_id) {
+                    return {
+                        ...player,
+                        pile_cards: [
+                            ...player.pile_cards,
+                            ...action.cards
+                        ]
+                    }
+                }
+
+                return player;
+            });
+
+            return {
+                ...state,
+                players: [
+                    ...players
+                ]
+            };
+
+
         case DeckActionTypes.NEW_ROUND:
 
             return {
                 ...state,
                 turnPlayerId: 1
+            };
+
+
+        case PlayerActionTypes.CALCULATE_WINNER:
+
+            const maxValue = calculateMaxPileValue(state.players);
+
+            let winners = getPlayersByPileCardsTotal(maxValue)(state);
+
+            console.log("WINNERS: ", winners);
+
+            return {
+                ...state,
+                winners: winners
             };
 
 

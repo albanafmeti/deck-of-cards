@@ -1,9 +1,10 @@
 import DeckApi from '../services/DeckApiService';
 import * as DeckActionTypes from '../actiontypes/deck';
+import NotificationService from "../services/NotificationService";
 
 export const shuffleCards = () => {
 
-    return function (dispatch, getState) {
+    return function (dispatch) {
 
         return DeckApi.shuffleCards().then(response => {
 
@@ -23,6 +24,8 @@ export const storeDeckId = deck_id => {
 };
 
 export const newRound = () => {
+
+    NotificationService.info(`Start next round.`);
 
     return {
         type: DeckActionTypes.NEW_ROUND,

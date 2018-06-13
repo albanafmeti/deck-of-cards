@@ -20,6 +20,24 @@ class PlayerApiService {
         });
     }
 
+    static moveCardsToPile(deck_id, pile_name, codes) {
+        return new Promise((resolve, reject) => {
+
+            return ApiService.get(`https://deckofcardsapi.com/api/deck/${deck_id}/pile/${pile_name}/add/?cards=${codes}`)
+                .then(response => {
+                    if (response.data.success) {
+                        return resolve(response.data);
+                    } else {
+                        throw response.data;
+                    }
+                })
+                .catch(response => {
+                    return response;
+                })
+
+        });
+    }
+
 }
 
 export default PlayerApiService;

@@ -8,8 +8,39 @@ import {throwCard} from '../../actions/player';
 import {updateTurn} from '../../actions/player';
 
 import {getPlayerHandCards, isPlayerTurn} from '../../selectors/playerSelector';
+import {subscribe} from "redux-subscriber";
+import NotificationService from "../../services/NotificationService";
 
 class Game extends Component {
+
+    componentDidMount() {
+        subscribe('player.winners', state => {
+
+            const winners = state.player.winners;
+
+            if (winners.length === 1) {
+
+                if (winners[0].id === 1) {
+                    NotificationService.success("You are the winner of this game.", "Congratulations!", 100000);
+                } else {
+                    NotificationService.error("Winner of the game is: " + winners[0].name.toUpperCase(), "GAME OVER!", 100000, false);
+                }
+
+            } else if (winners.length > 1) {
+
+                let winnersStr = "";
+                winners.forEach((winner) => {
+                    winnersStr += (winner.name + ",");
+                });
+
+                winnersStr = winnersStr.slice(0, -1);
+
+                NotificationService.success("Winners of the game are: " + winnersStr.toUpperCase(), "WINNERS", 100000, false);
+
+            }
+
+        });
+    }
 
     onThrowCard = (card) => {
         this.props.throwCard(1, card);

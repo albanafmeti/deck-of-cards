@@ -8,14 +8,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import './index.css';
 
-import toastr from 'toastr';
-
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 import {shuffleCards} from './actions/deck';
-
-toastr.options.progressBar = true;
 
 const store = configureStore();
 

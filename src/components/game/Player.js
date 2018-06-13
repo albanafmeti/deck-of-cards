@@ -4,14 +4,14 @@ import {subscribe} from 'redux-subscriber';
 import {connect} from 'react-redux';
 
 import * as PlayerActions from '../../actions/player';
-import {throwCard} from "../../actions/player";
-import {updateTurn} from "../../actions/player";
+import {throwCard, updateTurn} from "../../actions/player";
 import {getPlayer} from '../../selectors/playerSelector';
 
 class Player extends Component {
 
     static propTypes = {
         player: PropTypes.object.isRequired,
+        endOfRound: PropTypes.func.isRequired,
     };
 
     componentDidMount() {
@@ -31,16 +31,15 @@ class Player extends Component {
                     const player = getPlayer(state.player.turnPlayerId)(state);
 
                     if (player.last) {
-                        // END OF ROUND HERE
-                        // Calculate winner
-                        alert('calculate winner');
 
-                        // NEW ROUND ACTION -> set turnPlayerId = 1
+                        this.props.endOfRound();
+
                     } else {
+
                         this.props.updateTurn(this.props.player.id);
                     }
 
-                }, 3000);
+                }, 2000);
             }
 
         });
@@ -63,7 +62,7 @@ class Player extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         return (this.props.player.hand_cards.length !== nextProps.player.hand_cards.length) ||
-            (this.props.player.turn !== nextProps.player.turn);
+            (this.props.turnPlayerId !== nextProps.turnPlayerId);
     }
 
     render() {
@@ -78,7 +77,7 @@ class Player extends Component {
         return (
             <div className={`player-zone pz-${player.id} ${turnCss}`}>
 
-                <p className="text-center player-name"><strong>{player.name}</strong></p>
+                <p className="text-center player-name"><strong>{player.name}</strong> ( {player.pile_cards.length} )</p>
 
                 <img src="/images/user.svg" alt="User"/>
 
